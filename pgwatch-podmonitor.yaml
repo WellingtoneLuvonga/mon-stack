@@ -1,5 +1,5 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: pgwatch
   namespace: monitoring
@@ -11,9 +11,8 @@ spec:
       - pgwatch
   selector:
     matchLabels:
-      app.kubernetes.io/component: pgwatch
       app.kubernetes.io/name: pgwatch
-  endpoints:
-    - port: pgwatch
+  podMetricsEndpoints:
+    - targetPort: 9188
       interval: 15s
       path: /metrics

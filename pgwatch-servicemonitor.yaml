@@ -4,7 +4,7 @@ metadata:
   name: pgwatch
   namespace: monitoring
   labels:
-    release: kube-prometheus-stack
+    release: prometheus-stack
 spec:
   namespaceSelector:
     matchNames:

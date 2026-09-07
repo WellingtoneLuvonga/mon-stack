@@ -4,7 +4,7 @@ metadata:
   name: pgwatch
   namespace: monitoring
   labels:
-    release: prometheus-stack # Updated from kube-prometheus-stack
+    release: prometheus-stack
 spec:
   namespaceSelector:
     matchNames:
@@ -14,6 +14,6 @@ spec:
       app.kubernetes.io/component: pgwatch
       app.kubernetes.io/name: pgwatch
   endpoints:
-    - port: prometheus
+    - port: pgwatch
       interval: 15s
       path: /metrics

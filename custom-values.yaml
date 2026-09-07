@@ -1,7 +1,16 @@
 pgwatch:
+  service:
+    ports:
+      - name: pgwatch
+        port: 8080
+        targetPort: 8080
+        protocol: TCP
+      - name: prometheus
+        port: 9188
+        targetPort: 9188
+        protocol: TCP
   postgres:
     enablePgSink: false
-    # Dummy credentials so the chart generates pgwatch-postgresql-secret-pgwatch
     credentials:
       username: "pgwatch"
       password: "dummyPassword123!"
@@ -9,13 +18,9 @@ pgwatch:
       password: "dummyAdminPassword123!"
   prometheus:
     enablePromSink: true
-
     newPrometheus:
       createPrometheus: false
-
   grafana:
     enableGrafana: false
-
   sources:
-    files: {} # Leave empty to avoid creating plain ConfigMaps
-
+    files: {} #Leave emplty to avoid creating plain ConfigMaps

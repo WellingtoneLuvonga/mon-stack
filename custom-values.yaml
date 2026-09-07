@@ -1,26 +1,29 @@
+env:
+  - name: PW_SOURCES
+    value: /config/sources.yaml
+
+extraVolumes:
+  - name: pgwatch-sources
+    secret:
+      secretName: pgwatch-sources-secret
+
+extraVolumeMounts:
+  - name: pgwatch-sources
+    mountPath: /config/sources.yaml
+    subPath: sources.yaml
+
 pgwatch:
   env:
     - name: PW_SOURCES
       value: /config/sources.yaml
-  volumes:
+  extraVolumes:
     - name: pgwatch-sources
       secret:
         secretName: pgwatch-sources-secret
-  volumeMounts:
+  extraVolumeMounts:
     - name: pgwatch-sources
       mountPath: /config/sources.yaml
       subPath: sources.yaml
-
-  service:
-    ports:
-      - name: pgwatch
-        port: 8080
-        targetPort: 8080
-        protocol: TCP
-      - name: prometheus
-        port: 9188
-        targetPort: 9188
-        protocol: TCP
   postgres:
     enablePgSink: false
     credentials:
@@ -35,4 +38,4 @@ pgwatch:
   grafana:
     enableGrafana: false
   sources:
-    files: {} #Leave emplty to avoid creating plain ConfigMaps
+    files: {}

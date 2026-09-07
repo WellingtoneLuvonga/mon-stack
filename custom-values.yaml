@@ -1,4 +1,16 @@
 pgwatch:
+  env:
+    - name: PW_SOURCES
+      value: /config/sources.yaml
+  volumes:
+    - name: pgwatch-sources
+      secret:
+        secretName: pgwatch-sources-secret
+  volumeMounts:
+    - name: pgwatch-sources
+      mountPath: /config/sources.yaml
+      subPath: sources.yaml
+
   service:
     ports:
       - name: pgwatch

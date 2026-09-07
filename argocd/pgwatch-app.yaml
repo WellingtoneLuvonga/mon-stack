@@ -16,6 +16,7 @@ spec:
     - repoURL: 'https://github.com/WellingtoneLuvonga/mon-stack.git'
       targetRevision: main
       ref: git-repo
+      path: .
       directory:
         include: '{sealed-sources.yaml,pgwatch-servicemonitor.yaml}'
   destination:
